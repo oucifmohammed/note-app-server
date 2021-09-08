@@ -10,9 +10,7 @@ object DatabaseFactory {
     fun init() {
         Database.connect(
             url = System.getenv("DATABASE_URL"),
-            driver = System.getenv("JDBC_DRIVER"),
-            user = "postgres",
-            password = "pirati3a9li"
+            driver = System.getenv("JDBC_DRIVER")
         )
     }
 
