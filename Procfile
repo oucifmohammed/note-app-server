@@ -1,0 +1,1 @@
+web: build/install/com.example.note-app-server/bin/com.example.note-app-server
