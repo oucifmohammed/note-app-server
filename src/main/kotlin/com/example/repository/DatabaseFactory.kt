@@ -1,8 +1,11 @@
 package com.example.repository
 
+import com.example.data.tables.NoteTable
+import com.example.data.tables.UserTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.net.URI
 
@@ -20,6 +23,11 @@ object DatabaseFactory {
             url = jdbcUrl,
             driver = System.getenv("JDBC_DRIVER")
         )
+
+        transaction {
+            SchemaUtils.create(UserTable)
+            SchemaUtils.create(NoteTable)
+        }
     }
 
     suspend fun <T> dbQuery(block: () -> T): T = withContext(Dispatchers.IO) {
